@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookShelf
@@ -12,42 +10,44 @@ namespace BookShelf
     {
         static void Main(string[] args)
         {
-                    
-            bool isActive = true;                                    // Deklarerar variabeln som styr programmets huvudloop av typen boolean
 
             List<Book> bookList = new List<Book>();
-            while (isActive)                                        // Här startar vårt program - while-loop
+            bool isActive = true;                                                   // Deklarerar variabeln som styr programmets huvudloop av typen boolean
+            while (isActive)                                                        // Här startar programmet - while-loop
             {
                 Console.Clear();                                                    // Tömmer konsol fönstret
                 AppInfo();
                 Console.ForegroundColor = ConsoleColor.White;                       // Ändrar textfärgen
-                Console.WriteLine("\n\n\t = = = = = = = = = = = = = = = = = = = ="          // Skriver ut huvudmenyn
+                Console.WriteLine("\n\n\t = = = = = = = = = = = = = = ="            // Skriver ut huvudmenyn
                 + "\n\t\t - Bookshelf - "
-                + "\n\t = = = = = = = = = = = = = = = = = = = ="
+                + "\n\t = = = = = = = = = = = = = = ="
                 + "\n\n\t [1] Add a book to the bookshelf"
                 + "\n\t [2] See the list of all books in bookshelf"
-                + "\n\t [3] Quit");
+                 + "\n\t [3] Remove all books from list / bookshelf"
+                + "\n\t [4] Quit");
                 Console.ResetColor();                                               
-                if (Int32.TryParse(Console.ReadLine(), out int resultat))           
+                if (Int32.TryParse(Console.ReadLine(), out int val))                            // Kontrollerar att en siffra slagits in
                 {
-                    switch (resultat)                                               // Selektion med switch
+                    switch (val)                                                                // Selektion med switch
                     {
-                        case 1:                                                     // Menyval 1
+                        case 1:                                                                 // Menyval 1
+
+                         
                             string title = "";                       
                             string author = "";
                             int year = 0;
-                          //  bool available = false;
+                          
 
                                 Console.Clear();                                   
                                 Console.ForegroundColor = ConsoleColor.White;       
-                                Console.WriteLine("\n\n\t - Write the title of the book you want to add to the bookshelf"); 
+                                Console.WriteLine("\n\n\t - Write the title of the book");      // Instruktion till användaren
                                 Console.ResetColor();                              
                                 Console.Write("\t   ");                             
                                 title = Console.ReadLine().ToUpper(); 
                             
 
                                 Console.ForegroundColor = ConsoleColor.White;          
-                                Console.WriteLine("\n\n\t - Who is the Author of the book?"); 
+                                Console.WriteLine("\n\n\t - Who is the Author of the book?");   // Instruktion till användaren
                                 Console.ResetColor();                                  
                                 Console.Write("\t   ");                                 
                                 author = Console.ReadLine().ToUpper();             
@@ -56,63 +56,103 @@ namespace BookShelf
                                 Console.WriteLine("\n\n\t - What year was the book published?"); // Instruktion till användaren
                                 Console.ResetColor();                                 
                                 Console.Write("\t   ");                                 
-                                year = int.Parse(Console.ReadLine().ToUpper());             // lägger till publicerings år
-
-
-                                Novel newNovel = new Novel(title, author, year);
-                               // lägger till en bok
-                                bookList.Add(newNovel);                                    // Lägger till boken i listan av böcker (Arrayen)
-
-
-                                break;
+                                year = int.Parse(Console.ReadLine().ToUpper());                 // lägger till publicerings år
 
 
 
+                            
+                            Console.WriteLine("\n\t Choose the type of your book"               // skriver ut de 3 alternavtiv av boktyp
+                                                + "\n\n\t [1] Novel"
+                                                + "\n\t [2] ShortBook"
+                                                + "\n\t [3] Journal");
+                            if (Int32.TryParse(Console.ReadLine(), out int result))             // Kontrollerar att det är en siffra som valts av användaren
+                            {
+                                switch (result)                                                 //Typ av bok är en del av underklassens särskilada egenskap
+                                    {                                                           // Här väljs ett av 3 alternativ                   
+                                        case 1:
+                                            bookList.Add(new Novel(title, author, year));
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.WriteLine("\n\tA novel(book) was added to bookshelf!");
+                                        Console.ResetColor();
+                                            break;
+                                        case 2:
+                                            bookList.Add(new ShortStory(title, author, year));
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine("\n\tA shortstory (book) was added to bookshelf!");
+                                            Console.ResetColor();
+                                        break;
+                                        case 3:
+                                            bookList.Add(new Journal(title, author, year));
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.WriteLine("\n\tA journal (book) was added to bookshelf!");
+                                        Console.ResetColor();
+                                        break;
+                                        default:                                                    // Om fel nummer slagits in så får man börja om
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("\n\tError, Please add all information and select type 1-3 before\n\t" +
+                                            "adding the book"
+                                            + "\n\tPlease return to main menu and try again");
+                                        Console.ResetColor();
+
+                                        break;
+                                    }
+                                 } 
+
+                            Console.WriteLine("\n\n\t"
+                                            + "\n\tPress any key to continue to menu");
+                            Console.ReadKey();
+
+                            //Novel newNovel = new Novel(title, author, year);                  // testade lägga till bok i listan
+                            //   // lägger till en bok
+                            //    bookList.Add(newNovel);                                       // Lägger till boken i arrayen av böcker
+
+                            // Console.WriteLine("\n\n\tName: \t\t\t{0}, \n\tAuthor: \t\t{1}, \n\tType: \t\t{2}, \n\tYear of publication: \t{3} ", firstBook.Title, firstBook.Author, firstBook.ISBN, firstBook.YearOfPublication);
 
 
-                        case 2:                                                    
+                            break;
+
+
+
+
+
+                        case 2:                                                                 // Menyval 2
                             if (bookList.Count > 0)                                  
                             {
                                 Console.Clear();                                    
-                                Console.ForegroundColor = ConsoleColor.White;       
+                                Console.ForegroundColor = ConsoleColor.Yellow;       
                                 foreach (Book item in bookList)                      
                                 {
                                     Console.WriteLine(item);                     
                                 }
-                                Console.WriteLine("\n\n\t * " + bookList.Count + " book registered. * "); 
-                                Console.ResetColor();                               
+                                Console.WriteLine("\n\n\t\t + " + bookList.Count + " books in booklist / bookshelf."); 
+                                Console.ResetColor();
+                                Console.Write("\t");
                                 Console.ReadLine();                                 
                             }
                             else
-                            {                                                      
-                                Console.WriteLine("Now books available yet"); 
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\n\n\t - No books available yet"
+                                    +"\n\tPress any key to continue to menu");
+                                Console.ResetColor();
+                                Console.ReadKey();
                             }
                             break;
 
-                        case 3:                                                     // Menyval 2
-                            isActive = false;
+                        case 3:                                                                 // Menyval 3 Radera lista av böcker
+                            bookList.Clear();
                             break;
 
 
+                        case 4:                                                                 // Menyval 4 - Avsluta program
+                            isActive = false;
+                            break;
+
+                        default:
+                                                      
+                            break;
 
                     }                   
-
-                    // Console.WriteLine("\n\n\tName: \t\t\t{0}, \n\tAuthor: \t\t{1}, \n\tCategory: \t\t{2}, \n\tYear of publication: \t{3} ", firstBook.Title, firstBook.Author, firstBook.ISBN, firstBook.YearOfPublication);
-
-
-                    //Console.WriteLine("\n\t Böcker i listan: ");
-                    //foreach (Book book in bookList)
-                    //{
-                    //    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    //    Console.WriteLine("\n\t " + book + "\n ");
-                    //    Console.ResetColor();
-                    //}
-                    //Console.WriteLine("\n\t\t Tryck på valfri knapp för att fortsätta");
-                    //Console.Write("\t  ");
-                    //Console.WriteLine("\tPress any key to exit");
-                    //Console.ReadKey();
-
-
 
                 }
 
@@ -129,40 +169,15 @@ namespace BookShelf
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("\n\t {0} \n\t Version {1} \n\t By {2}", appName, appVersion, appAuthor);
+            Console.WriteLine("\n\t{0} \t " 
+                + "\n\tVersion: {1} \t\t "
+                + "\n\tBy {2} \t ", appName, appVersion, appAuthor);
 
             Console.ResetColor();
         }
 
     }
-
-
-    // going to change the program to this set up when all sub cats are done
-    /*
-    public static string AddBook(string title, string author, int yearOfPublicaion, string type)
-    {
-        
-            switch (type)//Typ av bok är en del av underklassens särskilada egenskap
-            {
-                case "Novel":
-                    bookList.Add(new Novel(title, author, yearOfPublicaion, available));
-                    return "\n\tBook added to bookshelf!";
-                    break;
-                case "ShortStory":
-                    bookList.Add(new ShortStory(title, author, yearOfPublicaion, available));
-                    return "\n\tBook added to bookshelf!";
-                    break;
-                case "Journal":
-                    bookList.Add(new Journal(title, author, yearOfPublicaion, available));
-                    return "\n\tBook added to bookshelf!";
-                    break;
-                default:
-                    return "\n\tPlease add all information before\n\t" +
-                        "adding the book to the book shelf...";
-                    break;
-            }
-        }
-    */
+    
 
 
     public class Book
@@ -187,12 +202,20 @@ namespace BookShelf
             
         }
 
-       
+        public override string ToString() // Här börjar bokens ToString. Dess standardiserade utskrift
+        {
+            return "\n\t\tTitle: " + Title + " (" + YearOfPublication + ")"
+            + "\n\t\tAuthor: " + Author
+            + "\n\t\tBook type: " + Type;
+            //  + "\n\t\t" + Available;
+        }
+
+
     }
 
 
     //Underklasserna av klassen Bok (Book) Ärver Bok klassens egenskaper.
-    //Type är en enskild egenskap för varje underklass av bok, beroende på vilken typ av bok man skapar så får underklasserna en unik egenskap
+    //Typen av bok (Type) är en enskild egenskap för varje underklass av bok, beroende på vilken typ av bok man skapar så får underklasserna en unik egenskap
 
     internal class Novel : Book
             {
@@ -201,59 +224,45 @@ namespace BookShelf
         {
             Type = "Novel";
         }
-
-        public override string ToString() // Här börjar bokens ToString. Dess standardiserade utskrift
-        {
-
-
-            return "\n\t\t" + Title + " (" + YearOfPublication + ")"
-            + "\n\t\t By:" + Author;
-              //  + "\n\t\t" + Available;
-
-
-        }
     }
 
-    /*
+    
     internal class ShortStory : Book
     {
-        //internal ShortStory(string inputTitle, string inputAuthor, int inputYearOfPublication, bool inputAvailable)
+        internal ShortStory(string inputTitle, string inputAuthor, int inputYearOfPublication) :
+             base(inputTitle, inputAuthor, inputYearOfPublication)
 
         {
             Type = "ShortStory";
         }
 
-        public override string ToString()
-        {
-            string available = "Book is in stock";
-            if (!Available)
-            {
-                available = "Book is out of stock";
-            }
-            return  available;
-        }
     }
 
     internal class Journal : Book
     {
-        internal Jounal(string inputTitle, string inputAuthor, int inputYearOfPublication, bool inputAvailable)
+        internal Journal(string inputTitle, string inputAuthor, int inputYearOfPublication) :
+             base(inputTitle, inputAuthor, inputYearOfPublication)
 
         {
             Type = "Journal";
         }
 
-        public override string ToString()
-        {
-            string available = "Book is in stock";
-            if (!Available)
-            {
-                available = "Book is out of stock";
-            }
-            return available;
-        }
+        // Man skulle kunna ändra texten på något sätt i varje typ om man ville, kanske ändrar detta sen 
+
+        //public override string ToString() // Här börjar book typens ToString.
+        //{
+
+        //    return "\n\t\t" + Title + " (" + YearOfPublication + ")"
+        //    + "\n\t\t By:" + Author
+        //    + "\n\t\t Type: " + Type;
+        //    //  + "\n\t\t" + Available;
+
+
+        //}
+
     }
 
-    */
+    
 }
 
 
