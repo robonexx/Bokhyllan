@@ -30,6 +30,7 @@ namespace BookShelf
 
         public static void Menu()                                               // Huvudmeny
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;                       // Ändrar textfärgen
             Console.WriteLine("\n\n\t = = = = = = = = = = = = = = ="            // Skriver ut huvudmenyn
             + "\n\t\t - Library - "
@@ -38,8 +39,9 @@ namespace BookShelf
             + "\n\t = = = = = = = = = = = = = = ="
             + "\n\n\t[1] Add a book to the library"
             + "\n\t[2] See the list of all books in the libarary"
-             + "\n\t[3] Remove all books from list in the library"
-            + "\n\t[4] Quit");
+            + "\n\t[3] Searh for a book in the library"                         // Metoden är ej klar
+            + "\n\t[4] Remove all books from list in the library"
+            + "\n\t[5] Quit");
             Console.ResetColor();
 
         }
@@ -47,13 +49,17 @@ namespace BookShelf
         static void Main(string[] args)                                                         // main här körs programmet, får bara finns en main
         {
             Console.Clear();                                                                    // Rensar konsollen
-            AppInfo();                                                                          // App information hämtar metoden 
-            Menu();                                                                             // Huvudmeny hämtar metoden 
-            
+
+            AppInfo();                                                                         // App information hämtar metoden 
+            Task.Delay(2300).Wait();
+                                                                                                // Huvudmeny hämtar metoden 
+
             Librarian Rob = new Librarian();
             bool isActive = true;                                                               // Deklarerar variabeln som styr programmets huvudloop av typen boolean
             while (isActive)                                                                    // Här startar programmet - while-loop
             {
+                Menu();                                                                         // Menu
+
                 Console.Write("\t");                                                            // Lägger till ett mellan rum så text markören är på samma linje med menyn
                 if (Int32.TryParse(Console.ReadLine(), out int val))                            // Kontrollerar att en siffra slagits in
                 {
@@ -62,7 +68,7 @@ namespace BookShelf
                     switch (val)                                                                // Selektion med switch
                     {
                         case 1:                                                                 // Menyval 1
-                            Rob.CreateBook();
+                            Rob.AddBook();
 
                             break;
 
@@ -72,11 +78,16 @@ namespace BookShelf
                             break;
 
                         case 3:
-                            Console.WriteLine("Search books");
+                            Rob.SearhBooks();                                                   // not done yet
 
                             break;
 
-                        case 4:                                                                 // Menyval 4 - Avsluta program
+                        case 4:
+                            Rob.RemoveBooks();                                                  // done but not implemented on this one
+
+                            break;
+
+                        case 5:                                                                 // Menyval 5 - Avsluta program
                             isActive = false;
                             break;
 
