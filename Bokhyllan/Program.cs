@@ -78,7 +78,7 @@ namespace BookShelf
                             break;
 
                         case 3:
-                            Rob.SearhBooks();                                                   // not done yet
+                           Rob.SearhBooks();                                                   // not done yet
 
                             break;
 

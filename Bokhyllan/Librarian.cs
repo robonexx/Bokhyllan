@@ -151,39 +151,45 @@ namespace Bokhyllan
         //Sök funktion för att leat bland böcker
         public void SearhBooks()
         {
+
+            string results = "";
+           
+
             Console.WriteLine("\n\tSearch for books by title:");
             Console.Write("\n\t");
             string search = Console.ReadLine();
-            //+1 för varje bok i listan
-            for (int i = 0; i < bookList.Count; i++)
+            
+            foreach (Book item in bookList)
             {
-                foreach (Book item in bookList)
+                if (item.Title == search)
                 {
-                    if (item.Title != search)
-                    {
-                        Console.WriteLine("\n\tWe could not find a book with the title: " + search + ", sorry.");
-                        Console.WriteLine("\n\tBack to main menu");
-                        break;
-                       
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n\tThe book with the title: " + search + " is available");
-                        Console.WriteLine("\n\tPress any key to continue");
-                        break;
-                    }
+                    results += "\n\t" + item;
+                    
                 }
-
+                else
+                {
+                    results += "";
+                }                           
             }
 
+            if (results != "")
+            {
+                Console.WriteLine("\n\tThese books are availble with the title you searched for: ");               
+            }
+            else
+            {
+                Console.WriteLine("\n\tSorry we don´t have the book you was looking for.)");
+            }
+            
+            Console.WriteLine(results);
+            Console.WriteLine("\n\tPress any key to continue");
             Console.Write("\n\t");
             Console.ReadKey();
         }
 
+
     }
 }
-
-   
     
 
 
