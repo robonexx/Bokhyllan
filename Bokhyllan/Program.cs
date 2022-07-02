@@ -38,8 +38,9 @@ namespace BookShelf
             + "\n\t = = = = = = = = = = = = = = ="
             + "\n\n\t[1] Add a book to the library"
             + "\n\t[2] See the list of all books in the libarary"
-             + "\n\t[3] Remove all books from list in the library"
-            + "\n\t[4] Quit");
+            + "\n\t[3] Remove all books from list in the library"
+            + "\n\t[4] Remove all books from list in the library"
+            + "\n\t[5] Quit");
             Console.ResetColor();
 
         }
@@ -72,11 +73,16 @@ namespace BookShelf
                             break;
 
                         case 3:
-                            Console.WriteLine("Search books");
+                            Console.WriteLine("Search books"); // not done yet
 
                             break;
 
-                        case 4:                                                                 // Menyval 4 - Avsluta program
+                        case 4:
+                            Console.WriteLine("erase books"); // done but not implemented on this one
+
+                            break;
+
+                        case 5:                                                                 // Menyval 5 - Avsluta program
                             isActive = false;
                             break;
 
