@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bokhyllan{
+namespace Bokhyllan
+{
 
     class Librarian
     {
@@ -16,8 +17,8 @@ namespace Bokhyllan{
 
         public static string GetBooks()
         {
-           string output = " ";
-           
+            string output = " ";
+
             if (bookList.Count > 0)                                     //Om det ej finns någon data än, om boklistan är tom
             {
                 Console.Clear();
@@ -33,7 +34,7 @@ namespace Bokhyllan{
                 Console.ResetColor();
                 Console.Write("\t");
                 Console.ReadKey();
-                
+
             }
             else
             {
@@ -47,9 +48,9 @@ namespace Bokhyllan{
                 Console.ReadKey();
             }
             return output;
-            
+
         }
-        
+
         // Metod för att lägga till en ny bok
         public void AddBook()
         {
@@ -73,32 +74,32 @@ namespace Bokhyllan{
             Console.WriteLine("\n\tHow many pages does the book have?");                      //information till användare  
             Console.Write("\n\t");
             Int32.TryParse(Console.ReadLine(), out pages);                                      //data = antal sidor tas emot
-           
+
             Console.WriteLine("\n\tWhat type of book is it? Choose a number 1-3"                    //här ger man 3 alternativ till boktyp
-            + "\n\t\t[1] Novel" 
-            + "\n\t\t[2] ShortStory" 
+            + "\n\t\t[1] Novel"
+            + "\n\t\t[2] ShortStory"
             + "\n\t\t[3] Journal");
 
 
             Console.Write("\t\t");
-            if(Int32.TryParse(Console.ReadLine(), out int type))                                   //felhantering ser efter om boken är en int - siffra
+            if (Int32.TryParse(Console.ReadLine(), out int type))                                   //felhantering ser efter om boken är en int - siffra
             {
-            switch (type)
+                switch (type)
                 {
-                case 1:
-                    Novel newNovel = new Novel(title, author, year, pages);                          //typ roman på engelska Novel
-                    bookList.Add(newNovel);
-                    break;
+                    case 1:
+                        Novel newNovel = new Novel(title, author, year, pages);                          //typ roman på engelska Novel
+                        bookList.Add(newNovel);
+                        break;
 
-                case 2:
-                    ShortStory newShortStory = new ShortStory(title, author, year, pages);          //typ novellsamling på engelska ShortStory
-                    bookList.Add(newShortStory);
-                    break;
-                
-                case 3: 
-                    Journal newJournal = new Journal(title, author, year, pages);                   //typ tidskrift på engelska Journal
-                    bookList.Add(newJournal);
-                    break;
+                    case 2:
+                        ShortStory newShortStory = new ShortStory(title, author, year, pages);          //typ novellsamling på engelska ShortStory
+                        bookList.Add(newShortStory);
+                        break;
+
+                    case 3:
+                        Journal newJournal = new Journal(title, author, year, pages);                   //typ tidskrift på engelska Journal
+                        bookList.Add(newJournal);
+                        break;
 
                     default:
                         Console.WriteLine("\n\tPlease, choose between [1], [2] & [3]!");                    //om ej rätt alternativ anges
@@ -135,9 +136,9 @@ namespace Bokhyllan{
                 bookList.Clear();                                                       //radera regisrerade böcker från bibliotekets lista
             }
             else if (input == 2)
-                         
+
                 Console.WriteLine("\n\tI see you changed your mind, back to the menu.");
-                   
+
             else
             {
                 //om inte val har gjorts
@@ -150,15 +151,46 @@ namespace Bokhyllan{
         //Sök funktion för att leat bland böcker
         public void SearhBooks()
         {
-            Console.WriteLine("\n\tThis funktion/ method is Not done yet"
-                + "\n\tPress any key to continue");
-            Console.ReadKey();
+
+            string results = "";
+           
+
+            Console.WriteLine("\n\tSearch for books by title:");
+            Console.Write("\n\t");
+            string search = Console.ReadLine();
             
+            foreach (Book item in bookList)
+            {
+                if (item.Title == search)
+                {
+                    results += "\n\t" + item;
+                    
+                }
+                else
+                {
+                    results += "";
+                }                           
+            }
+
+            if (results != "")
+            {
+                Console.WriteLine("\n\tThese books are availble with the title you searched for: ");               
+            }
+            else
+            {
+                Console.WriteLine("\n\tSorry we don´t have the book you was looking for.)");
+            }
+            
+            Console.WriteLine(results);
+            Console.WriteLine("\n\tPress any key to continue");
+            Console.Write("\n\t");
+            Console.ReadKey();
         }
 
-    }
 
+    }
 }
+    
 
 
 
