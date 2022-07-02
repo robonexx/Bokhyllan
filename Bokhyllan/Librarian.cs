@@ -12,23 +12,24 @@ namespace Bokhyllan{
         static private List<Book> bookList = new List<Book>();
 
 
+        // metod för att hämta alla registrerade böcker
 
         public static string GetBooks()
         {
-           string data = " ";
-
+           string output = " ";
            
             if (bookList.Count > 0)                                     //Om det ej finns någon data än, om boklistan är tom
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Yellow;
                 foreach (Book item in bookList)                         //En loop av typen foreach för att gå igenom hela boklistan och lägga till böckerna
                 {
-                    data = "\n\t" + item;
-                    Console.WriteLine(data);
+                    output = "\n\t" + item;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\n\t\tLibrary book register");
+                    Console.WriteLine(output);
                 }
-                data = "\n\n\t\t + " + bookList.Count + " books in booklist / bookshelf.";
-                Console.WriteLine(data);
+                output = "\n\n\t\t + " + bookList.Count + " books currently in registered in this library.";
+                Console.WriteLine(output);
                 Console.ResetColor();
                 Console.Write("\t");
                 Console.ReadKey();
@@ -36,19 +37,21 @@ namespace Bokhyllan{
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n\t\tLibrary book register");
                 Console.ForegroundColor = ConsoleColor.Red;
-                data = "\n\n\t - No books available yet"                //meddelande om datan / listan är tom
+                output = "\n\n\t - No books available yet"                //meddelande om datan / listan är tom
                     + "\n\tPress any key to continue to menu";
-                Console.WriteLine(data);
+                Console.WriteLine(output);
                 Console.ResetColor();
                 Console.ReadKey();
             }
-            return data;
+            return output;
             
         }
         
-
-        public void CreateBook()
+        // Metod för att lägga till en ny bok
+        public void AddBook()
         {
             string title;
             string author;
@@ -106,6 +109,53 @@ namespace Bokhyllan{
             }
 
         }
+
+        // erase books
+
+        public void RemoveBooks()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("\n\t !!! Remove booklist menu!!! ");
+
+            Console.WriteLine("\n\tChoose");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\t[1] to remove all books from library registration");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\t[2] If you have a changed your mind ;D");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("\n\t");
+            Int32.TryParse(Console.ReadLine(), out int input);
+            if (input == 1)
+            {
+                bookList.Clear();                                                       //radera regisrerade böcker från bibliotekets lista
+            }
+            else if (input == 2)
+                         
+                Console.WriteLine("\n\tI see you changed your mind, back to the menu.");
+                   
+            else
+            {
+                //om inte val har gjorts
+                Console.WriteLine("\n\tYou have to choose option [1] & [2], make a choice!");
+                Console.ReadLine();
+            }
+            Console.ResetColor();
+        }
+
+        //Sök funktion för att leat bland böcker
+        public void SearhBooks()
+        {
+            Console.WriteLine("\n\tThis funktion/ method is Not done yet"
+                + "\n\tPress any key to continue");
+            Console.ReadKey();
+            
+        }
+
     }
 
 }
