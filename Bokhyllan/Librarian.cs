@@ -111,8 +111,8 @@ namespace Bokhyllan
 
         }
 
-        // erase books
-
+        // Funktion för att radera böcker 
+        // med 2 val för att radera eller ångra
         public void RemoveBooks()
         {
             Console.Clear();
