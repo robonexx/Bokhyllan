@@ -155,7 +155,7 @@ namespace Bokhyllan
             string results = "";
            
 
-            Console.WriteLine("\n\tSearch for books by title:");
+            Console.WriteLine("\n\tSearch for books by title or author:");
             Console.Write("\n\t");
             string search = Console.ReadLine();
             
@@ -163,8 +163,11 @@ namespace Bokhyllan
             {
                 if (item.Title == search)
                 {
+                    results += "\n\t" + item;                   
+                }
+                else if (item.Author == search)
+                {
                     results += "\n\t" + item;
-                    
                 }
                 else
                 {
@@ -200,7 +203,7 @@ namespace Bokhyllan
 
 /*
  
-        //public static string GetInfo(int index)                                     // här hämtas informationen om boken genom index - datan
+        //public static string GetInfo(int index)                                     // method för att hämta bok information via index
         //{
         //    return "\n\n\tTitle:\t\t" + bookList[index].Title +
         //           "\n\tAuthor:\t\t" + bookList[index].Author +
@@ -218,7 +221,7 @@ namespace Bokhyllan
  * //string data = "";
            //int currentIndex = 0;
 
-           //if (bookList.Count != 0)                                //Om det ej finns någon data än, om boklistan är tom
+           //if (bookList.Count != 0)                                //ifall arrayen inte är tom
            //{
            //    foreach (Book Bok in bookList)                      //En loop av typen foreach för att gå igenom hela boklistan och lägga till böckerna
            //    {
