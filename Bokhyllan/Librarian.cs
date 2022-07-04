@@ -155,7 +155,7 @@ namespace Bokhyllan
             string results = "";
            
 
-            Console.WriteLine("\n\tSearch for books by title:");
+            Console.WriteLine("\n\tSearch for books by title or author:");
             Console.Write("\n\t");
             string search = Console.ReadLine();
             
@@ -164,6 +164,10 @@ namespace Bokhyllan
                 if (item.Title == search)
                 {
                     results += "\n\t" + item;                   
+                }
+                else if (item.Author == search)
+                {
+                    results += "\n\t" + item;
                 }
                 else
                 {
