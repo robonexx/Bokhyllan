@@ -152,20 +152,24 @@ namespace Bokhyllan
         public void SearhBooks()
         {
 
-            string results = "";
+            string results = "";                                            // variabel för att spara resultat
            
 
-            Console.WriteLine("\n\tSearch for books by title or author:");
+            Console.WriteLine("\n\tSearch for books by title, author or year of publication:");
             Console.Write("\n\t");
-            string search = Console.ReadLine();
-            
+            string search = Console.ReadLine();                             // skapar sök variabeln
+            var isNumeric = int.TryParse(search, out int searchIsYear);     // kollar om variabeln search är ett nummer
             foreach (Book item in bookList)
             {
-                if (item.Title == search)
+                if (item.Title == search)                                   // om titeln matchar
                 {
                     results += "\n\t" + item;                   
                 }
-                else if (item.Author == search)
+                else if (item.Author == search)                             // om skribenten matchar
+                {
+                    results += "\n\t" + item;
+                }
+                else if (item.YearOfPublication == searchIsYear )           // om året matchar
                 {
                     results += "\n\t" + item;
                 }
