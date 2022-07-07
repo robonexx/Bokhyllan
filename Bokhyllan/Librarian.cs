@@ -206,6 +206,7 @@ namespace Bokhyllan
     
 
 
+// ================= INTE LAGT IN TESTADE ANDRA SÄTT, som jag lärde mig på youtube klipp =================================
 
 // tried out a few different verions of how to get the flow in the program, not ready yet
 
@@ -243,7 +244,7 @@ namespace Bokhyllan
            //else
            //{
            //    data = "\n\tThere are no books currently in the library"                 //meddelande om datan / listan är tom
-           //            +"\n\tYou can choose to add one in the main menu alternative 1";
+           //            +"\n\tYou can choose to add one in the main menu";
            //}
            //return data;
 
