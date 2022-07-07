@@ -12,8 +12,9 @@ namespace Bokhyllan
     {
         static private List<Book> bookList = new List<Book>();
 
-
+        // =============================================
         // metod för att hämta alla registrerade böcker
+        // =============================================
 
         public static string GetBooks()
         {
@@ -51,7 +52,10 @@ namespace Bokhyllan
 
         }
 
+        // ==================================
         // Metod för att lägga till en ny bok
+        // ==================================
+
         public void AddBook()
         {
             string title;
@@ -111,8 +115,10 @@ namespace Bokhyllan
 
         }
 
-        // Funktion för att radera böcker 
-        // med 2 val för att radera eller ångra
+        // ========================================
+        // Metod för att radera böcker, eller ångra
+        // ========================================
+       
         public void RemoveBooks()
         {
             Console.Clear();
@@ -202,7 +208,7 @@ namespace Bokhyllan
 
 
 // tried out a few different verions of how to get the flow in the program, not ready yet
-// would use this if I wouldent have a ToString method on the sub-classes
+
 // don´t know which is the best way so saving this
 
 /*
